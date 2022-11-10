@@ -31,4 +31,17 @@ public class SwagLabsTests {
         Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
 
+    @Test
+    @DisplayName("Checking Lodin Page Username")
+    public void checkUsername(){
+        webDriver.get("https://www.saucedemo.com/");
+        WebElement username = webDriver.findElement(By.id("user-name"));
+        WebElement password=webDriver.findElement(By.id("password"));
+        WebElement login=webDriver.findElement(By.id("login-button"));
+        username.sendKeys("standard_user");
+        password.sendKeys("secret_sauce");
+        login.click();
+
+
+    }
 }
