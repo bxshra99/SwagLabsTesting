@@ -20,7 +20,7 @@ public class SwagLabsTests {
     @BeforeEach
     public void setup() {
         webDriver.manage().deleteAllCookies();
-        webDriver.get("https://news.ycombinator.com/");
+        webDriver.get("https://www.saucedemo.com/");
     }
 
     }
