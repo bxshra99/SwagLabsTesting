@@ -1,4 +1,4 @@
-package com.sparta.SwagLabsTesting.framework.pom;
+package test.java.com.sparta.SwagLabsTesting.framework.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,6 @@ public class Login {
     }
 
     private void loginFunction() {
-
         webDriver.get("https://www.saucedemo.com/");
         WebElement username = webDriver.findElement(By.id("user-name"));
         WebElement password=webDriver.findElement(By.id("password"));
@@ -20,7 +19,5 @@ public class Login {
         username.sendKeys("standard_user");
         password.sendKeys("secret_sauce");
         login.click();
-
     }
-
 }
