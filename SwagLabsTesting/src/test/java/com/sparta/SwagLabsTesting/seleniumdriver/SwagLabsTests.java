@@ -30,5 +30,6 @@ public class SwagLabsTests {
     public void checkDriver() {
         Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
+    
 
 }
