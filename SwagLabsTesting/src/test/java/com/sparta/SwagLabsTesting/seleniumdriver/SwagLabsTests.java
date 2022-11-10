@@ -41,7 +41,5 @@ public class SwagLabsTests {
         username.sendKeys("standard_user");
         password.sendKeys("secret_sauce");
         login.click();
-
-
     }
 }
