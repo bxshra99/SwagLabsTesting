@@ -1,4 +1,4 @@
-package test.java.com.sparta.SwagLabsTesting.framework.pom;
+package com.sparta.SwagLabsTesting.framework.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
