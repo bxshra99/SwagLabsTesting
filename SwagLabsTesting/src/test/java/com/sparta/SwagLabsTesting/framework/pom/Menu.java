@@ -52,6 +52,7 @@ public class Menu {
     }
 
     public void close(){
+        waitUntilElementClickable(crossButton);
         webDriver.findElement(crossButton).click();
     }
 }

@@ -6,12 +6,13 @@ import com.sparta.SwagLabsTesting.framework.pom.Menu;
 import org.hamcrest.MatcherAssert;
 import static org.hamcrest.Matchers.*;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverLogLevel;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class MenuTest {
+public class MenuTests {
 
     private static WebDriver webDriver;
     private Menu menu;
@@ -34,28 +35,35 @@ public class MenuTest {
     }
 
     @Test
-    @DisplayName("Testing the Inventory link")
+    @DisplayName("Test the Inventory link")
     public void testInventoryLink() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", menu.goToInventoryPage().getUrl());
     }
 
     @Test
-    @DisplayName("Testing the Logout Link")
+    @DisplayName("Test the Logout link")
     public void testLogoutLink() {
         Assertions.assertEquals("https://www.saucedemo.com/", menu.goToLogout().getUrl());
     }
 
     @Test
-    @DisplayName("test About Page link")
+    @DisplayName("Test the About page link")
     public void TestAboutPageLink() {
         menu.goToAboutPage();
         MatcherAssert.assertThat(webDriver.getCurrentUrl(), equalTo("https://saucelabs.com/"));
     }
 
     @Test
-    @DisplayName("test reset Page link")
+    @DisplayName("Test Reset page link")
     public void TestResetLink() {
         MatcherAssert.assertThat(menu.resetPage().getUrl(), equalTo("https://www.saucedemo.com/inventory.html"));
+    }
+
+    @Test
+    @DisplayName("Test Close Menu button")
+    public void TestCloseMenu() {
+        menu.close();
+        Assertions.assertEquals("true", webDriver.findElement(By.className("bm-menu-wrap")).getAttribute("aria-hidden"));
     }
 
     @AfterAll
