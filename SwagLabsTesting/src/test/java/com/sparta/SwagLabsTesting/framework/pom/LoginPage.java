@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Login {
+public class LoginPage {
     private final WebDriver webDriver;
 
-    public Login(WebDriver webDriver) {
+    public LoginPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
