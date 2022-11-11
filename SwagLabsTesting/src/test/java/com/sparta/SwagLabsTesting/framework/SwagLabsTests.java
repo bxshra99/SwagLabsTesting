@@ -1,6 +1,6 @@
 package com.sparta.SwagLabsTesting.framework;
 
-import com.sparta.SwagLabsTesting.framework.pom.Login;
+import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class SwagLabsTests {
 
     private static WebDriver webDriver;
-    private Login login;
+    private LoginPage login;
 //    private Username username;
 //    private Password password;
 //    private ClickLogin clickLogin;
@@ -31,7 +31,7 @@ public class SwagLabsTests {
     @BeforeEach
     public void setUp() {
         webDriver.manage().deleteAllCookies();
-        login = new Login(webDriver);
+        login = new LoginPage(webDriver);
 
     }
 
