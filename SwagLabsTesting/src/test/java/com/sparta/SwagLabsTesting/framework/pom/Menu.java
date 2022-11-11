@@ -32,7 +32,7 @@ public class Menu {
 //        webDriver.get("https://www.saucedemo.com/inventory.html");
 //    }
 
-    public void goToAbout(){
+    public void goToAboutPage(){
         webDriver.findElement(aboutLink).click();
     }
 
@@ -49,11 +49,11 @@ public class Menu {
 
 
 
-    public AboutPage goToTheAboutPage(){
-        webDriver.findElement(aboutLink).click();
-        return new AboutPage(webDriver);
-
-    }
+//    public AboutPage goToTheAboutPage(){
+//        webDriver.findElement(aboutLink).click();
+//        return new AboutPage(webDriver);
+//
+//    }
 
 
 
