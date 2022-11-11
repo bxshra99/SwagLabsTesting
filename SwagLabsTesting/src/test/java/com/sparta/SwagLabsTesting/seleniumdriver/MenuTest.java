@@ -21,15 +21,15 @@ public class MenuTest {
     @BeforeEach
     public void setup() {
         webDriver.manage().deleteAllCookies();
-        webDriver.get("https://www.saucedemo.com/inventory.html");
+        webDriver.get("https://www.saucedemo.com/");
     }
 
 
     @Test
     @DisplayName("Checking that the webdriver works")
     public void checkDriver() {
-        webDriver.get("https://www.saucedemo.com/inventory.html");
-        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", webDriver.getCurrentUrl());
+        webDriver.get("https://www.saucedemo.com/");
+        Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
 
 
