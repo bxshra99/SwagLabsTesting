@@ -28,6 +28,10 @@ public class Menu {
         return new InventoryPage(webDriver);
     }
 
+//    public void goToInventoryPage() {
+//        webDriver.get("https://www.saucedemo.com/inventory.html");
+//    }
+
     public void goToAbout(){
         webDriver.findElement(aboutLink).click();
     }
@@ -37,9 +41,27 @@ public class Menu {
         return new LoginPage(webDriver);
     }
 
-    public void reset(){
+
+    public InventoryPage resetPage(){
         webDriver.findElement(resetLink).click();
+        return new InventoryPage(webDriver);
     }
+
+
+
+    public AboutPage goToTheAboutPage(){
+        webDriver.findElement(aboutLink).click();
+        return new AboutPage(webDriver);
+
+    }
+
+
+
+//    public InventoryPage goToAboutPage(){
+//        webDriver.findElement(aboutLink).click();
+//        return new InventoryPage(webDriver);
+//
+//    }
 
     public void close(){
         webDriver.findElement(crossButton).click();
