@@ -12,22 +12,34 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 public class SwagLabsTests {
         private static WebDriver webDriver;
 
-        @BeforeAll
-        public static void setupAll() {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
-            webDriver = new ChromeDriver(chromeOptions);
-        }
+//        @BeforeAll
+//        public static void setupAll() {
+//            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+//            ChromeOptions chromeOptions = new ChromeOptions();
+//            chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
+//            webDriver = new ChromeDriver(chromeOptions);
+//        }
+
+    @BeforeAll
+    public static void setupAll() {
+//        System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
+    }
+
+
     @BeforeEach
     public void setup() {
-        webDriver.manage().deleteAllCookies();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
+        chromeOptions.addArguments("headless");
+        webDriver = new ChromeDriver();
         webDriver.get("https://www.saucedemo.com/");
     }
 
+
     @Test
-    @DisplayName("Check Driver")
+    @DisplayName("Checking that the webdriver works")
     public void checkDriver() {
+        webDriver.get("https://www.saucedemo.com/");
         Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
     
@@ -42,5 +54,17 @@ public class SwagLabsTests {
         username.sendKeys("standard_user");
         password.sendKeys("secret_sauce");
         login.click();
+    }
+
+    @AfterEach
+    public void teardown() {
+        webDriver.close();
+        webDriver.quit();
+    }
+
+    @AfterAll
+    public static void teardownAll() {
+        if (webDriver != null)
+            webDriver.quit();
     }
 }
