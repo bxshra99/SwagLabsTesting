@@ -7,17 +7,34 @@ import org.openqa.selenium.WebElement;
 public class LoginPage {
     private final WebDriver webDriver;
 
+    private By usernameInput = new By.ById("user-name");
+    private By passwordInput = new By.ById("password");
+    private By loginButton = new By.ById("login-button");
+
     public LoginPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    private void loginFunction() {
-        webDriver.get("https://www.saucedemo.com/");
-        WebElement username = webDriver.findElement(By.id("user-name"));
-        WebElement password=webDriver.findElement(By.id("password"));
-        WebElement login=webDriver.findElement(By.id("login-button"));
-        username.sendKeys("standard_user");
-        password.sendKeys("secret_sauce");
-        login.click();
+    public String getUrl() {
+        return webDriver.getCurrentUrl();
+    }
+
+    public void enterUsername(String username) {
+        webDriver.findElement(usernameInput).sendKeys(username);
+    }
+
+    public void enterPassword(String password){
+        webDriver.findElement(passwordInput).sendKeys(password);
+    }
+
+    public InventoryPage clickLogin() {
+        webDriver.findElement(loginButton).click();
+        return new InventoryPage(webDriver);
+    }
+
+    public InventoryPage login(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        return clickLogin();
     }
 }
