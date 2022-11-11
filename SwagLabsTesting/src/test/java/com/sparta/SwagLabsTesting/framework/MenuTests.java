@@ -22,6 +22,7 @@ public class MenuTests {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
+        chromeOptions.addArguments("headless");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
