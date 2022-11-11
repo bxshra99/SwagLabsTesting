@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 public class Menu {
 
     private WebDriver webDriver;
-    private By pageTop = new By.ByClassName("pagetop");
     private By crossButton = new By.ByClassName("bm-cross-button");
     private By inventoryLink = new By.ByLinkText("All Items");
     private By aboutLink = new By.ByLinkText("About");
@@ -29,15 +28,21 @@ public class Menu {
         return new InventoryPage(webDriver);
     }
 
-    public AboutPage goToAbout(){
+    public void goToAbout(){
         webDriver.findElement(aboutLink).click();
-        return new AboutPage(webDriver);
     }
 
+    public LoginPage goToLogout(){
+        webDriver.findElement(logoutLink).click();
+        return new LoginPage(webDriver);
+    }
 
+    public void reset(){
+        webDriver.findElement(resetLink).click();
+    }
 
-    public String getURL(){
-        return webDriver.getCurrentUrl();
+    public void close(){
+        webDriver.findElement(crossButton).click();
     }
 
 
