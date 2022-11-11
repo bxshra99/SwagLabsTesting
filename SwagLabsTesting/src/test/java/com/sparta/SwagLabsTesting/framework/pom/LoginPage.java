@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 public class LoginPage {
     private final WebDriver webDriver;
 
-    private By usernameInput = new By.ById("user-name");
-    private By passwordInput = new By.ById("password");
-    private By loginButton = new By.ById("login-button");
+    private final By usernameInput = new By.ById("user-name");
+    private final By passwordInput = new By.ById("password");
+    private final By loginButton = new By.ById("login-button");
 
     public LoginPage(WebDriver webDriver) {
         this.webDriver = webDriver;
+        webDriver.get("https://www.saucedemo.com/");
     }
 
     public String getUrl() {
