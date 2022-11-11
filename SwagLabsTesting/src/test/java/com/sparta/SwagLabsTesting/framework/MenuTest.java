@@ -1,5 +1,7 @@
-package com.sparta.SwagLabsTesting.seleniumdriver;
+package com.sparta.SwagLabsTesting.framework;
 
+import com.sparta.SwagLabsTesting.framework.pom.Menu;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,12 +34,36 @@ public class MenuTest {
         Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
 
+    @Test
+    @DisplayName("Testing the Inventory link")
+    public void testInventoryLink (){
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html",
+                Menu.goToInventory().getUrl());
+    }
+
+    @Test
+    @DisplayName("Testing the Login Link")
+    public void testLoginLink (){
+        Assertions.assertEquals("https://www.saucedemo.com/",
+                Menu.goToLogout().getUrl());
+    }
+
+    @Test
+    @DisplayName("test About Page link")
+    public void TestAboutPageLink(){
+        MatcherAssert.assertThat(
+                Menu.goToTheAboutPage().getUrl(), equals("https://saucelabs.com/"));
+    }
+
+    @Test
+    @DisplayName("test reset Page link")
+    public void TestAboutPageLink(){
+        MatcherAssert.assertThat(
+                Menu.resetPage().getUrl(), equals("https://www.saucedemo.com/inventory.html"));
+    }
 
 
-
-
-
-
+    
 
 
     @AfterEach
