@@ -1,4 +1,4 @@
-package com.sparta.SwagLabsTesting.seleniumdriver;
+package com.sparta.SwagLabsTesting.framework;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
