@@ -20,7 +20,7 @@ public class InventoryTests {
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
-//        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("headless");
         webDriver = new ChromeDriver(chromeOptions);
         webDriver.get("https://www.saucedemo.com/inventory.html");
     }
