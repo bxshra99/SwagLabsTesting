@@ -32,19 +32,35 @@ public class InventoryTests {
         inventoryPage = new InventoryPage(webDriver);
         inventoryPage = loginPage.login("standard_user", "secret_sauce");
     }
+
     // url test
     @Test
     @DisplayName("inventory page returns correct url")
     public void inventoryUrlTest() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getUrl());
     }
-    // testing add to cart methods
+
+    // ---------------------- may be removed (is rewritten) --------------------------
     @Test
     @DisplayName("When the backpack add to cart button is pressed, it will change to a remove button")
     public void addBackpackTest() {
         inventoryPage.clickAddBackpackToCartButton();
         Assertions.assertTrue(inventoryPage.removeBackpackFromCartButtonIsPresent());
     }
+    // ----------------------------------------------------------------------------------
+
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When the add button is pressed, it will change to a remove button")
+    public void testAddButtonChangesToRemove() {
+        Assertions.assertTrue(inventoryPage.addButtonIsPresent(0));
+        inventoryPage.clickItemButton(0);
+        Assertions.assertTrue(inventoryPage.removeButtonIsPresent(0));
+    }
+    // ---------------------------------
+
+    // ------------ may be removed (checks the same functionality as the prev one)--------
+    // ------------ another option is to rewrite them -------------------------------------
     @Test
     @DisplayName("When the bike light add to cart button is pressed, it will change to a remove button")
     public void addBikeLightTest() {
@@ -75,8 +91,9 @@ public class InventoryTests {
         inventoryPage.clickAddRedTShirtToCartButton();
         Assertions.assertTrue(inventoryPage.removeRedTShirtFromCartButtonIsPresent());
     }
+    // ----------------------------------------------------------------------------------
 
-    // testing remove methods
+    // ---------------------- may be removed (is rewritten) --------------------------
     @Test
     @DisplayName("When backpack remove button is pressed, it will change to an add button")
     public void removeBackpackTest() {
@@ -84,7 +101,19 @@ public class InventoryTests {
         inventoryPage.clickRemoveBackpackFromCart();
         Assertions.assertTrue(inventoryPage.addBackpackToCartButtonIsPresent());
     }
+    // ----------------------------------------------------------------------------------
 
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When the remove button is pressed, it will change to an add button")
+    public void testRemoveButtonChangesToAdd() {
+        inventoryPage.clickItemButton(0);
+        inventoryPage.clickItemButton(0);
+        Assertions.assertTrue(inventoryPage.addButtonIsPresent(0));
+    }
+    // --------------------------------
+
+    // ---------------------- may be removed (is rewritten) --------------------------
     @Test
     @DisplayName("When the basket contains 5 items and two are removed, the basket total is 3")
     public void basketTest() {
@@ -98,25 +127,61 @@ public class InventoryTests {
         inventoryPage.clickRemoveOnesieFromCart();
         Assertions.assertEquals(3, inventoryPage.getCartTotal());
     }
+    // ----------------------------------------------------------------------------------
+
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When the basket contains 5 items and two are removed, the basket total is 3")
+    public void basketTotalTest() {
+        inventoryPage.addOrRemoveSeveralItems(5);
+        inventoryPage.addOrRemoveSeveralItems(2);
+        Assertions.assertEquals(3, inventoryPage.getCartTotal());
+    }
+    // --------------------------------
+
+    // ---------------------- may be removed (is rewritten) --------------------------
     // basket total tests
     @Test
     @DisplayName("When one item is added to the basket, the basket total is 1")
-    public void addOneItemTest() {
+    public void addOneItemTest0() {
         inventoryPage.clickAddBackpackToCartButton();
         Assertions.assertEquals(1, inventoryPage.getCartTotal());
     }
+    // ----------------------------------------------------------------------------------
+
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When one item is added to the basket, the basket total is 1")
+    public void addOneItemTest() {
+        inventoryPage.clickItemButton(0);
+        Assertions.assertEquals(1, inventoryPage.getCartTotal());
+    }
+    // --------------------------------
+
+    // ---------------------- may be removed (is rewritten) --------------------------
     @Test
     @DisplayName("When three items are added to the basket, the basket total will be 3")
-    public void addThreeItemsTest() {
+    public void addThreeItemsTest0() {
         inventoryPage.clickAddBackpackToCartButton();
         inventoryPage.clickAddOnesieToCartButton();
         inventoryPage.clickAddRedTShirtToCartButton();
         Assertions.assertEquals(3, inventoryPage.getCartTotal());
     }
+    // ----------------------------------------------------------------------------------
 
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When three items are added to the basket, the basket total will be 3")
+    public void addThreeItemsTest() {
+        inventoryPage.addOrRemoveSeveralItems(3);
+        Assertions.assertEquals(3, inventoryPage.getCartTotal());
+    }
+    // --------------------------------
+
+    // ---------------------- may be removed (is rewritten) --------------------------
     @Test
     @DisplayName("When all items are added to the cart, the basket total will be 6")
-    public void addAllItemsTest() {
+    public void addAllItemsTest0() {
         inventoryPage.clickAddBackpackToCartButton();
         inventoryPage.clickAddOnesieToCartButton();
         inventoryPage.clickAddRedTShirtToCartButton();
@@ -125,6 +190,20 @@ public class InventoryTests {
         inventoryPage.clickAddFleeceJacketToCartButton();
         Assertions.assertEquals(6, inventoryPage.getCartTotal());
     }
+    // ----------------------------------------------------------------------------------
 
+    // -------------------- anastasiia
+    @Test
+    @DisplayName("When all items are added to the cart, the basket total will be 6")
+    public void addAllItemsTest() {
+        inventoryPage.addOrRemoveSeveralItems(6);
+        Assertions.assertEquals(6, inventoryPage.getCartTotal());
+    }
+    // --------------------------------
 
+    @AfterAll
+    public static void afterAll() {
+        webDriver.close(); // closes window
+        webDriver.quit(); // destroys window
+    }
 }
