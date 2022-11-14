@@ -101,10 +101,18 @@ public class InventoryPage {
         }
     }
 
+    public void removeAllItemsFromCart() {
+        for (int i = 0; i < inventoryItems.size(); i++)
+            if (removeButtonIsPresent(i))
+                inventoryItems.get(i).findElement(itemAddRemoveButton).click();
+    }
+
+    // do we need this method for testing?
     public void clickImageLink(int index) {
         inventoryItems.get(index).findElement(itemImageLink).click();
     }
 
+    // do we need this method for testing?
     public void clickItemLink(int index) {
         inventoryItems.get(index).findElement(itemLink).click();
     }
