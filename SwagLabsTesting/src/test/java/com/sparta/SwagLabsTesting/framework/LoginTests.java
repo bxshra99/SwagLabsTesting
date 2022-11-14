@@ -33,8 +33,10 @@ public class LoginTests {
         loginPage = new LoginPage(webDriver);
     }
 
-    // Happy path - Given that I have input the correct login information,
-    // when I press login, then I am taken to the inventory page.
+    // Happy path
+    // Given that I have input the correct login information,
+    // When I press login,
+    // Then I am taken to the inventory page.
     @Test
     @DisplayName("Test login with a \"standard_user\" username and valid password")
     public void testCorrectLogin() {
@@ -42,8 +44,10 @@ public class LoginTests {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", loginPage.getUrl());
     }
 
-    // Sad path - Given that I have input the wrong username and the right password, when I press login,
-    // then I see a message telling me that my details do not match any username or password in the service.
+    // Sad path
+    // Given that I have input the wrong username and the right password,
+    // When I press login,
+    // Then I see a message telling me that my details do not match any username or password in the service.
     @Test
     @DisplayName("Test login with a wrong username and correct password")
     public void testIncorrectUsername() {
@@ -52,8 +56,10 @@ public class LoginTests {
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("Username and password do not match any user in this service"), equalTo(true));
     }
 
-    // Sad path - Given that I have input the correct username and the wrong password,
-    // when I press login, then I see a message telling me that my details do not match any username or password in the service.
+    // Sad path
+    // Given that I have input the correct username and the wrong password,
+    // When I press login,
+    // Then I see a message telling me that my details do not match any username or password in the service.
     @Test
     @DisplayName("Test login with a existing username and wrong password")
     public void testIncorrectPassword() {
@@ -62,8 +68,10 @@ public class LoginTests {
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("Username and password do not match any user in this service"), equalTo(true));
     }
 
-    // Sad Path - Given that I have input my username but no password,
-    // when I press login, then I see a message that tells me a password is required.
+    // Sad Path
+    // Given that I have input my username but no password,
+    // When I press login,
+    // Then I see a message that tells me a password is required.
     @Test
     @DisplayName("Test login with a username but no password")
     public void testLoginNoPassword() {
@@ -72,8 +80,10 @@ public class LoginTests {
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("Password is required"), equalTo(true));
     }
 
-    // Sad Path - Given that I have input my password but no username, when I press login,
-    // then I see a message that tells me a username is required.
+    // Sad Path
+    // Given that I have input my password but no username,
+    // When I press login,
+    // Then I see a message that tells me a username is required.
     @Test
     @DisplayName("Test login with no username but a password")
     public void testLoginNoUsername() {
