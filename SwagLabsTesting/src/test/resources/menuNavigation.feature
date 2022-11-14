@@ -1,5 +1,5 @@
 Feature: As a user I want to be able to navigate on the website using the menu
-  Background: Given that i am on the menu page
+  Background: Given that the menu is open
 
 
   Scenario: User attemping to navigate to the inventory page
@@ -17,7 +17,7 @@ Feature: As a user I want to be able to navigate on the website using the menu
 
   Scenario: User attemping to reset the app
     When I click on the reset app link
-    Then the website should return to its default settings
+    Then i should be navigated to the inventory page
 
 
   Scenario: User attemping to close the menu
