@@ -21,7 +21,7 @@ public class Menu {
 
     public Menu(WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
     }
 
     public void waitUntilElementClickable(By element) {
