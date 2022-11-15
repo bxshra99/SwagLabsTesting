@@ -5,13 +5,49 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class InventoryPage {
     private WebDriver webDriver;
 
+    // -------------------- anastasiia
+    private List<WebElement> inventoryItems = null; // the list with all the items
+    private final By itemImageLink = By.cssSelector(".inventory_item_img a"); // selector of the item's image
+    private final By itemAddRemoveButton = By.cssSelector(".btn_inventory"); // selector of the item's button
+    private final By itemLink = By.cssSelector(".inventory_item_label a"); // selector of the item's link
+    // -------------------------------
+
+    // Cart button objects
+    private By cartButton = new By.ById("shopping_cart_container");
+    private By cartBadge = new By.ByClassName("shopping_cart_badge");
+
+    // ------------ may be removed (likely won't be used) -----------------------------
+    // Filter button objects
+    private By productSortButton = new By.ByClassName("product_sort_container");
+    private By productSortNameAZ = new By.ByCssSelector("[value=\"az\"]");
+    private By productSortNameZA = new By.ByCssSelector("[value=\"za\"]");
+    private By productSortPriceLH = new By.ByCssSelector("[value=\"lohi\"]");
+    private By productSortPriceHL = new By.ByCssSelector("[value=\"hilo\"]");
+    // --------------------------------------------------------------------------------
+
+    // menu objects
+    private By openMenuButton = new By.ById("react-burger-menu-btn");
+
+    // --------- may be removed (repeats method from Menu class) ----------------------
+    private By closeMenuButton = new By.ById("react-burger-cross-btn");
+    // --------------------------------------------------------------------------------
+
+
+
     public InventoryPage(WebDriver webDriver) {
         this.webDriver = webDriver;
+        // -------------------- anastasiia
+        this.inventoryItems = webDriver.findElements(By.className("inventory_item"));
+        // -------------------------------
     }
 
+
+    // ----------------------- may be removed ------------------------------------------
     // backpack objects
     private By addBackpackToCartButton = new By.ById("add-to-cart-sauce-labs-backpack");
     private By removeBackpackFromCartButton = new By.ById("remove-sauce-labs-backpack");
@@ -47,18 +83,50 @@ public class InventoryPage {
     private By removeRedTShirtFromCartButton = new By.ById("remove-test.allthethings()-t-shirt-(red)");
     private By redTShirtImage = new By.ById("item_3_img_link");
     private By redTShirtNameLink = new By.ById("item_3_title_link");
+    // --------------------------------------------------------------------------------
 
-    // Cart button objects
-    private By cartButton = new By.ById("shopping_cart_container");
-    private By cartBadge = new By.ByClassName("shopping_cart_badge");
+    // get url method
+    public String getUrl() {
+        return webDriver.getCurrentUrl();
+    }
 
-    // Filter button objects
-    private By productSortButton = new By.ByClassName("product_sort_container");
-    private By productSortNameAZ = new By.ByCssSelector("[value=\"az\"]");
-    private By productSortNameZA = new By.ByCssSelector("[value=\"za\"]");
-    private By productSortPriceLH = new By.ByCssSelector("[value=\"lohi\"]");
-    private By productSortPriceHL = new By.ByCssSelector("[value=\"hilo\"]");
+    // -------------------- anastasiia ---------------------------------------------------
+    public void clickItemButton(int index) {
+        inventoryItems.get(index).findElement(itemAddRemoveButton).click();
+    }
 
+    public void addOrRemoveSeveralItems(int number) {
+        for (int i = 0; i < number; i ++) {
+            clickItemButton(i);
+        }
+    }
+
+    public void removeAllItemsFromCart() {
+        for (int i = 0; i < inventoryItems.size(); i++)
+            if (removeButtonIsPresent(i))
+                inventoryItems.get(i).findElement(itemAddRemoveButton).click();
+    }
+
+    // do we need this method for testing?
+    public void clickImageLink(int index) {
+        inventoryItems.get(index).findElement(itemImageLink).click();
+    }
+
+    // do we need this method for testing?
+    public void clickItemLink(int index) {
+        inventoryItems.get(index).findElement(itemLink).click();
+    }
+
+    public boolean addButtonIsPresent(int index) {
+        return inventoryItems.get(index).findElement(itemAddRemoveButton).getText().equals("ADD TO CART");
+    }
+
+    public boolean removeButtonIsPresent(int index) {
+        return inventoryItems.get(index).findElement(itemAddRemoveButton).getText().equals("REMOVE");
+    }
+    // ------------------------------------------------------------------------------------
+
+    // ----------------------- may be removed ------------------------------------------
     // backpack methods
     public void clickAddBackpackToCartButton() {
         webDriver.findElement(addBackpackToCartButton).click();
@@ -178,11 +246,13 @@ public class InventoryPage {
     public boolean removeRedTShirtFromCartButtonIsPresent() {
         return webDriver.findElements(removeRedTShirtFromCartButton).size() != 0;
     }
+    // --------------------------------------------------------------------------------
 
     // cart methods
     public void clickCartButton() {
         webDriver.findElement(cartButton).click();
     }
+
     // Get cart badge number
     public int getCartTotal() {
         WebElement badgeNumElement;
@@ -194,8 +264,8 @@ public class InventoryPage {
         return Integer.parseInt(badgeNumElement.getText());
     }
 
+    // ------------ may be removed (likely won't be used) -----------------------------
     // filter methods
-
     // Filter buttons clicks
     public void clickProductSortButton() {
         webDriver.findElement(productSortButton).click();
@@ -213,10 +283,7 @@ public class InventoryPage {
     public void clickProductSortPriceHL() {
         webDriver.findElement(productSortPriceHL).click();
     }
-
-    // menu objects
-    private By openMenuButton = new By.ById("react-burger-menu-btn");
-    private By closeMenuButton = new By.ById("react-burger-cross-btn");
+    // --------------------------------------------------------------------------------
 
     // menu methods
     public Menu openMenu() {
@@ -224,15 +291,13 @@ public class InventoryPage {
         return new Menu(webDriver);
     }
 
+    // ---------- may be removed (repeats method from Menu class)---------------
     public Menu closeMenu() {
         webDriver.findElement(closeMenuButton).click();
         return new Menu(webDriver);
     }
+    // -------------------------------------------------------------------------
 
-    // get url method
-    public String getUrl() {
-        return webDriver.getCurrentUrl();
-    }
 
 
 
