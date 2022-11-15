@@ -9,6 +9,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverLogLevel;
@@ -40,45 +41,36 @@ public class CheckoutDefs {
     
     @Given("I am on the Checkout page")
     public void iAmOnTheCheckoutPage() {
+        checkoutPage = new CheckoutPage(webDriver);
     }
 
     @When("I enter {string} as first name")
-    public void iEnterAsFirstName(String arg0) {
+    public void iEnterAsFirstName(String firstName) {
+        checkoutPage.enterFirstName(firstName);
     }
 
     @And("I enter {string} as last name")
-    public void iEnterAsLastName(String arg0) {
+    public void iEnterAsLastName(String lastName) {
+        checkoutPage.enterLastName(lastName);
     }
 
-    @And("I enter {string} as a poctal code")
-    public void iEnterAsAPoctalCode(String arg0) {
+    @And("I enter {string} as a postal code")
+    public void iEnterAsAPostalCode(String postalCode) {
+        checkoutPage.enterPostalCode(postalCode);
     }
 
     @And("I click continue button")
     public void iClickContinueButton() {
+        checkoutPage.continueCheckout();
     }
 
-    @Then("I will be navigated to the {int}nd step of the checkout")
-    public void iWillBeNavigatedToTheNdStepOfTheCheckout(int arg0) {
+    @Then("I will be navigated to the second step of the checkout")
+    public void iWillBeNavigatedToTheSecondStepOfTheCheckout() {
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", checkoutPage.getUrl());
     }
 
-    @When("I enter {string} as the first name")
-    public void iEnterAsTheFirstName(String arg0) {
-    }
-
-    @And("I enter {string} as a postal code")
-    public void iEnterAsAPostalCode(String arg0) {
-    }
-
-    @Then("I will recieve an error message that states {string}")
-    public void iWillRecieveAnErrorMessageThatStates(String arg0) {
-    }
-
-    @When("When I enter {string} as first name")
-    public void whenIEnterAsFirstName(String arg0) {
-    }
-
-    @And("I enter {string} as a last name")
-    public void iEnterAsALastName(String arg0) {
+    @Then("I will receive an error message that states {string}")
+    public void iWillReceiveAnErrorMessageThatStates(String message) {
+        Assertions.assertEquals(message, checkoutPage.getErrorMessage());
     }
 }
