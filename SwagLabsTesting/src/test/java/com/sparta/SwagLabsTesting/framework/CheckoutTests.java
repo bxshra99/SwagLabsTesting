@@ -34,7 +34,7 @@ public class CheckoutTests {
         Cart cart = inventoryPage.openCart();
         checkoutPage = cart.checkoutButton();
     }
-
+    
     @Test
     @DisplayName("Test checkout works once all info is correct")
     public void testCorrectCheckout() {
