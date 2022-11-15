@@ -298,6 +298,10 @@ public class InventoryPage {
     }
     // -------------------------------------------------------------------------
 
+    public Cart openCart() {
+        webDriver.findElement(cartButton).click();
+        return new Cart(webDriver);
+    }
 
 
 
