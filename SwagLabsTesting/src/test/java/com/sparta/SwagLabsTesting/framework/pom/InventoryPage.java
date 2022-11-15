@@ -148,7 +148,6 @@ public class InventoryPage {
         return price;
     }
 
-    // ------------ may be removed (likely won't be used) -----------------------------
     // filter methods
     // Filter buttons clicks
     public void clickProductSortButton() {
@@ -168,9 +167,55 @@ public class InventoryPage {
         webDriver.findElement(productSortPriceHL).click();
     }
 
-
-
-    // --------------------------------------------------------------------------------
+    // filter methods is sorted
+    public boolean productIsSortedAZ() {
+        boolean inOrder = true;
+        String nameBefore = "";
+        for (int i = 0; i < inventoryItems.size(); i++) {
+            String name = getProductName(i);
+            if (name.compareTo(nameBefore) < 0) {
+                inOrder = false;
+            }
+            nameBefore = name;
+        }
+        return inOrder;
+    }
+    public boolean productIsSortedZA() {
+        boolean inOrder = true;
+        String nameBefore = getProductName(0);
+        for (int i = 0; i < inventoryItems.size(); i++) {
+            String name = getProductName(i);
+            if (name.compareTo(nameBefore) > 0) {
+                inOrder = false;
+            }
+            nameBefore = name;
+        }
+        return inOrder;
+    }
+    public boolean productIsSortedLH() {
+        boolean inOrder = true;
+        double priceBefore = 0;
+        for (int i = 0; i < inventoryItems.size(); i++) {
+            double price = getProductPrice(i);
+            if (price < priceBefore) {
+                inOrder = false;
+            }
+            priceBefore = price;
+        }
+        return inOrder;
+    }
+    public boolean productIsSortedHL() {
+        boolean inOrder = true;
+        double priceBefore = getProductPrice(0);
+        for (int i = 0; i < inventoryItems.size(); i++) {
+            double price = getProductPrice(i);
+            if (!(price <= priceBefore)) {
+                inOrder = false;
+            }
+            priceBefore = price;
+        }
+        return inOrder;
+    }
 
     // menu methods
     public Menu openMenu() {
@@ -183,6 +228,7 @@ public class InventoryPage {
         webDriver.findElement(cartButton).click();
         return new Cart(webDriver);
     }
+
 
 
 

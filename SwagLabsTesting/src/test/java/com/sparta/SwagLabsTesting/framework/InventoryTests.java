@@ -2,6 +2,7 @@ package com.sparta.SwagLabsTesting.framework;
 
 import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
 import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
+import com.sparta.SwagLabsTesting.framework.pom.Menu;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,7 @@ public class InventoryTests {
     private static WebDriver webDriver;
     private InventoryPage inventoryPage;
     private LoginPage loginPage;
+    private Menu menu;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
 
     @BeforeAll
@@ -29,7 +31,10 @@ public class InventoryTests {
         webDriver.manage().deleteAllCookies();
         loginPage = new LoginPage(webDriver);
         inventoryPage = new InventoryPage(webDriver);
+//        menu = new Menu(webDriver);
         inventoryPage = loginPage.login("standard_user", "secret_sauce");
+
+
     }
 
     // url test
@@ -90,7 +95,7 @@ public class InventoryTests {
         inventoryPage.addOrRemoveSeveralItems(6);
         Assertions.assertEquals(6, inventoryPage.getCartTotal());
     }
-
+    // ---------------------- morgster
     // get product name
     @Test
     @DisplayName("Correct product name is returned")
@@ -115,6 +120,32 @@ public class InventoryTests {
     @DisplayName("Correct index is returned")
     public void correctIndexReturnedTest() {
         Assertions.assertEquals(0, inventoryPage.getProductIndexFromName("Sauce Labs Backpack"));
+    }
+
+     //testing filter functions
+    @Test
+    @DisplayName("When HL sort is clicked, the products are sorted by price from highest to lowest")
+    public void highLowSortTest() {
+        inventoryPage.clickProductSortPriceHL();
+        Assertions.assertTrue(inventoryPage.productIsSortedHL());
+    }
+    @Test
+    @DisplayName("When LH sort is clicked, the products are sorted by price from highest to lowest")
+    public void lowHighSortTest() {
+        inventoryPage.clickProductSortPriceLH();
+        Assertions.assertTrue(inventoryPage.productIsSortedLH());
+    }
+    @Test
+    @DisplayName("When AZ sort is clicked, the products are sorted alphabetically")
+    public void aTozSortTest() {
+        inventoryPage.clickProductSortNameAZ();
+        Assertions.assertTrue(inventoryPage.productIsSortedAZ());
+    }
+    @Test
+    @DisplayName("When ZA sort is clicked, the products are sorted reverse alphabetically")
+    public void zToaSortTest() {
+        inventoryPage.clickProductSortNameZA();
+        Assertions.assertTrue(inventoryPage.productIsSortedZA());
     }
 
 //    // testing image link
