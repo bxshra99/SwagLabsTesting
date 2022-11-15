@@ -3,6 +3,10 @@ package com.sparta.SwagLabsTesting.framework.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
     private final WebDriver webDriver;
@@ -41,7 +45,10 @@ public class LoginPage {
         return clickLogin();
     }
     public boolean hasMessage(String message) {
-        String  bodyText = webDriver.findElement(By.tagName("h3")).getText();
+         WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+         WebElement body  = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(new By.ByTagName("h3")));
+        String bodyText = body.getText();
+//        String  bodyText = webDriver.findElement(By.tagName("h3")).getText();
         System.out.println(bodyText);
         return bodyText.contains(message);
     }

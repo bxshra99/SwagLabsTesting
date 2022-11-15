@@ -143,8 +143,4 @@ public class InventoryTests {
         webDriver.quit(); // destroys window
     }
 
-
-
-
-
 }
