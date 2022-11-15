@@ -1,5 +1,6 @@
 Feature: As a user I want to be able to navigate on the website using the menu
-  Background: Given that the menu is open
+  Background:
+    Given that the menu is open
 
 
   Scenario: User attempting to navigate to the inventory page
