@@ -1,30 +1,52 @@
 package com.sparta.SwagLabsTesting.framework.stepdefs;
 
 public class MenuNavigationDefs {
-    public MenuNavigationDefs() {
-        When("^I click on the inventory link$", () -> {
+    @io.cucumber.java.en.Given("^that the menu is open$")
+    public void thatTheMenuIsOpen() {
 
-        });
-        Then("^I should be navigated to the inventory page$", () -> {
+    }
 
-        });
-        When("^I click on the about page link$", () -> {
+    @io.cucumber.java.en.When("^I click on the inventory link$")
+    public void iClickOnTheInventoryLink() {
 
-        });
-        Then("^I should be navigate to the about page$", () -> {
+    }
 
-        });
-        When("^I click on the logout link$", () -> {
-        });
-        Then("^i should be navigated back to the login page$", () -> {
-        });
-        When("^I click on the reset app link$", () -> {
-        });
-        Then("^i should be navigated to the inventory page$", () -> {
-        });
-        When("^i click on the close menu button$", () -> {
-        });
-        Then("^the menu will be hidden from the webpage$", () -> {
-        });
+    @io.cucumber.java.en.Then("^I should be navigated to the inventory page$")
+    public void iShouldBeNavigatedToTheInventoryPage() {
+
+    }
+
+    @io.cucumber.java.en.When("^I click on the about page link$")
+    public void iClickOnTheAboutPageLink() {
+
+    }
+
+    @io.cucumber.java.en.Then("^I should be navigate to the about page$")
+    public void iShouldBeNavigateToTheAboutPage() {
+        
+    }
+
+    @io.cucumber.java.en.When("^I click on the logout link$")
+    public void iClickOnTheLogoutLink() {
+    }
+
+    @io.cucumber.java.en.Then("^i should be navigated back to the login page$")
+    public void iShouldBeNavigatedBackToTheLoginPage() {
+    }
+
+    @io.cucumber.java.en.When("^I click on the reset app link$")
+    public void iClickOnTheResetAppLink() {
+    }
+
+    @io.cucumber.java.en.Then("^i should be navigated to the inventory page$")
+    public void iShouldBeNavigatedToTheInventoryPage() {
+    }
+
+    @io.cucumber.java.en.When("^i click on the close menu button$")
+    public void iClickOnTheCloseMenuButton() {
+    }
+
+    @io.cucumber.java.en.Then("^the menu will be hidden from the webpage$")
+    public void theMenuWillBeHiddenFromTheWebpage() {
     }
 }
