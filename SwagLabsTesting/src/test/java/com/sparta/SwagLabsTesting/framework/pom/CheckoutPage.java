@@ -14,6 +14,7 @@ public class CheckoutPage {
     private final By continueButton = new By.ById("continue");
     private final By finishCheckoutButton = new By.ById("finish");
     private final By backHomeButton = new By.ById("back-to-products");
+    private final By errorBox = new By.ByCssSelector(".error-message-container");
 
     public CheckoutPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -40,19 +41,31 @@ public class CheckoutPage {
         webDriver.findElement(postalCodeInput).sendKeys(postcode);
     }
 
-    public void cancelCheckout() {
-        webDriver.findElement(cancelButton).click();
-    }
-
     public void continueCheckout() {
         webDriver.findElement(continueButton).click();
+    }
+
+    public void sendInfoForCheckout(String firstName, String lastName, String postcode) {
+        enterFirstName(firstName);
+        enterLastName(lastName);
+        enterPostalCode(postcode);
+        continueCheckout();
+    }
+
+    public InventoryPage cancelCheckout() {
+        webDriver.findElement(cancelButton).click();
+        return new InventoryPage(webDriver);
     }
 
     public void finishCheckout() {
         webDriver.findElement(finishCheckoutButton).click();
     }
 
-    public InventoryPage goToInventoryPage() {
+    public String getErrorMessage() {
+        return webDriver.findElement(errorBox).getText();
+    }
+
+    public InventoryPage pressBackHomeButton() {
         webDriver.findElement(backHomeButton).click();
         return new InventoryPage(webDriver);
     }

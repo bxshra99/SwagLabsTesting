@@ -53,9 +53,8 @@ public class LoginTests {
     public void testIncorrectUsername() {
         loginPage.login("user_123", "secret_sauce");
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getAttribute("data-test"), equalTo("error"));
-        MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("Username and password do not match any user in this service"), equalTo(true));
+        MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("rUsename and password do not match any user in this service"), equalTo(true));
     }
-
     // Sad path
     // Given that I have input the correct username and the wrong password,
     // When I press login,
@@ -67,7 +66,6 @@ public class LoginTests {
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getAttribute("data-test"), equalTo("error"));
         MatcherAssert.assertThat(webDriver.findElement(By.tagName("h3")).getText().contains("Username and password do not match any user in this service"), equalTo(true));
     }
-
     // Sad Path
     // Given that I have input my username but no password,
     // When I press login,

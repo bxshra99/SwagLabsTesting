@@ -222,4 +222,16 @@ public class InventoryPage {
         webDriver.findElement(openMenuButton).click();
         return new Menu(webDriver);
     }
+
+
+    public Cart openCart() {
+        webDriver.findElement(cartButton).click();
+        return new Cart(webDriver);
+    }
+
+
+
+
+
+
 }

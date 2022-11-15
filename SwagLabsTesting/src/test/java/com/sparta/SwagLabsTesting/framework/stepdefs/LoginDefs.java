@@ -4,6 +4,7 @@ import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,7 +26,7 @@ public class LoginDefs {
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
-        chromeOptions.addArguments("headless");
+ //       chromeOptions.addArguments("headless");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
@@ -34,8 +35,39 @@ public class LoginDefs {
         webDriver.manage().deleteAllCookies();
     }
 
+    @Given("I am on the login page")
+    public void iAmOnTheLoginPage(){
+        LoginPage loginPage = new LoginPage(webDriver);
+        this.loginPage = loginPage;
+//        throw new PendingException();
+    }
+
+    @When("I enter {string} into the username box")
+    public void iEnterIntoTheUsernameBox(String username){
+        loginPage.enterUsername(username);
+//        throw new PendingException();
+    }
+
+    @And("I enter {string} into the password")
+    public void iEnterIntoThePassword(String password) {
+        loginPage.enterPassword(password);
+  //      throw new PendingException();
+    }
+
+    @And("I click the login button")
+    public void iClickTheLoginButton() {
+        loginPage.clickLogin();
+    //    throw new PendingException();
+    }
+
+    @Then("I will see the message {string}")
+    public void iWillSeeTheMessage(String message) {
+        Assertions.assertTrue(loginPage.hasMessage(message));
+   //     throw new PendingException();
+    }
+
     @After
-    public static void tearDown() {
+    public void tearDown() {
         if (webDriver != null) {
             webDriver.close();
             webDriver.quit();
