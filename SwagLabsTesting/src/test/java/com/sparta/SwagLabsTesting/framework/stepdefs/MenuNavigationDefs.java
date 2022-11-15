@@ -1,3 +1,4 @@
+
 package com.sparta.SwagLabsTesting.framework.stepdefs;
 
 import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
@@ -108,5 +109,4 @@ public class MenuNavigationDefs {
             webDriver.close();
             webDriver.quit();}
     }
-
 }

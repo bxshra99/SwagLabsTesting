@@ -16,6 +16,8 @@ public class LoginPage {
         webDriver.get("https://www.saucedemo.com/");
     }
 
+
+
     public String getUrl() {
         return webDriver.getCurrentUrl();
     }
@@ -37,5 +39,9 @@ public class LoginPage {
         enterUsername(username);
         enterPassword(password);
         return clickLogin();
+    }
+    public boolean hasMessage(String message) {
+        String  bodyText = webDriver.findElement(new By.ByCssSelector("error-message-container")).getText();
+        return bodyText.contains(message);
     }
 }
