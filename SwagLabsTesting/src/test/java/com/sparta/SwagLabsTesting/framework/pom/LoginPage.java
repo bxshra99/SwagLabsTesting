@@ -41,7 +41,8 @@ public class LoginPage {
         return clickLogin();
     }
     public boolean hasMessage(String message) {
-        String  bodyText = webDriver.findElement(new By.ByCssSelector("error-message-container")).getText();
+        String  bodyText = webDriver.findElement(By.tagName("h3")).getText();
+        System.out.println(bodyText);
         return bodyText.contains(message);
     }
 }
