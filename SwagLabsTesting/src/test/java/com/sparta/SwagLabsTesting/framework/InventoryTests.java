@@ -20,7 +20,7 @@ public class InventoryTests {
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
-        chromeOptions.addArguments("headless");
+//        chromeOptions.addArguments("headless");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
@@ -32,15 +32,12 @@ public class InventoryTests {
         inventoryPage = loginPage.login("standard_user", "secret_sauce");
     }
 
-    // url test
     @Test
     @DisplayName("inventory page returns correct url")
     public void inventoryUrlTest() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getUrl());
     }
 
-
-    // -------------------- anastasiia
     @Test
     @DisplayName("When the add button is pressed, it will change to a remove button")
     public void testAddButtonChangesToRemove() {
@@ -49,7 +46,6 @@ public class InventoryTests {
         Assertions.assertTrue(inventoryPage.removeButtonIsPresent(0));
     }
 
-    // -------------------- anastasiia
     @Test
     @DisplayName("When the remove button is pressed, it will change to an add button")
     public void testRemoveButtonChangesToAdd() {
@@ -58,7 +54,6 @@ public class InventoryTests {
         Assertions.assertTrue(inventoryPage.addButtonIsPresent(0));
     }
 
-    // -------------------- anastasiia
     @Test
     @DisplayName("When the basket contains 5 items and two are removed, the basket total is 3")
     public void basketTotalTest() {
@@ -67,8 +62,6 @@ public class InventoryTests {
         Assertions.assertEquals(3, inventoryPage.getCartTotal());
     }
 
-
-    // -------------------- anastasiia
     @Test
     @DisplayName("When one item is added to the basket, the basket total is 1")
     public void addOneItemTest() {
@@ -76,7 +69,6 @@ public class InventoryTests {
         Assertions.assertEquals(1, inventoryPage.getCartTotal());
     }
 
-    // -------------------- anastasiia
     @Test
     @DisplayName("When three items are added to the basket, the basket total will be 3")
     public void addThreeItemsTest() {
@@ -91,20 +83,18 @@ public class InventoryTests {
         Assertions.assertEquals(6, inventoryPage.getCartTotal());
     }
 
-    // get product name
     @Test
     @DisplayName("Correct product name is returned")
     public void getProductNameTest() {
         Assertions.assertEquals("Sauce Labs Bike Light", inventoryPage.getProductName(1));
     }
 
-    // get product description
     @Test
     @DisplayName("Correct product description is returned")
     public void getProductDescriptionTest() {
         Assertions.assertEquals("This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.", inventoryPage.getProductDescription(5));
     }
-    // get product price
+
     @Test
     @DisplayName("Correct product price is returned")
     public void getProductPriceTest() {
@@ -122,7 +112,7 @@ public class InventoryTests {
 //    @DisplayName("When an item image is clicked, the item page is shown")
 //    public void imageClickTest() {
 //        inventoryPage.clickImageLink(1);
-//        Assertions.assertEquals("https://www.saucedemo.com/inventory-item.html?id=0",inventoryPage.getUrl());
+//        Assertions.assertEquals("https://www.saucedemo.com/inventory-item.html?id=0", inventoryPage.getUrl());
 //    }
 //     // testing item link
 //    @Test
