@@ -55,6 +55,4 @@ public class CartTest {
         webDriver.quit(); // destroys window
     }
 
-
-
 }

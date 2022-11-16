@@ -35,17 +35,6 @@ public class SwagLabsTests {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @AfterAll
     public static void afterAll() {
         webDriver.close(); // closes window

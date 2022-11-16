@@ -42,8 +42,6 @@ public class SwagLabsTests {
         webDriver.get("https://www.saucedemo.com/");
         Assertions.assertEquals("https://www.saucedemo.com/", webDriver.getCurrentUrl());
     }
-    
-
     @Test
     @DisplayName("Checking Lodin Page Username")
     public void checkUsername(){

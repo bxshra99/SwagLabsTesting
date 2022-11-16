@@ -184,8 +184,4 @@ public class InventoryPage {
         return new Cart(webDriver);
     }
 
-
-
-
-
 }

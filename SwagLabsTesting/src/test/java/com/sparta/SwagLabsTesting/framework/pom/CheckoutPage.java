@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckoutPage {
     private final WebDriver webDriver;
-
     private final By openMenuButton = new By.ById("react-burger-menu-btn");
     private final By firstNameInput = new By.ById("first-name");
     private final By lastNameInput = new By.ById("last-name");

@@ -40,7 +40,6 @@ public class Cart {
         return new Menu(webDriver);
     }
 
-
     public void clickRemoveButton(int index) {
         cartItems.get(index).findElement(removeButton).click();
     }
