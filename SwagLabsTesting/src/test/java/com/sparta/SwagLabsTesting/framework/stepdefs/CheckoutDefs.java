@@ -1,9 +1,6 @@
 package com.sparta.SwagLabsTesting.framework.stepdefs;
 
-import com.sparta.SwagLabsTesting.framework.pom.Cart;
-import com.sparta.SwagLabsTesting.framework.pom.CheckoutPage;
-import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
-import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
+import com.sparta.SwagLabsTesting.framework.pom.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,6 +15,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class CheckoutDefs {
     private static WebDriver webDriver;
     private CheckoutPage checkoutPage;
+    private Cart cart;
+    private Menu menu;
+    InventoryPage inventoryPage;
 
     private static final String DRIVER_lOCATION = "src/test/resources/chromedriver.exe";
 
@@ -36,7 +36,7 @@ public class CheckoutDefs {
         InventoryPage inventoryPage = loginPage.login("standard_user", "secret_sauce");
         inventoryPage.addOrRemoveSeveralItems(3); // adding 3 items to the cart
         Cart cart = inventoryPage.openCart();
-        checkoutPage = cart.checkoutButton();
+        checkoutPage = cart.goToCheckout();
     }
     
     @Given("I am on the Checkout page")
@@ -72,5 +72,61 @@ public class CheckoutDefs {
     @Then("I will receive an error message that states {string}")
     public void iWillReceiveAnErrorMessageThatStates(String message) {
         Assertions.assertEquals(message, checkoutPage.getErrorMessage());
+    }
+
+    @When("I click cancel button")
+    public void iClickCancelButton() {
+        cart = checkoutPage.cancelCheckout();
+    }
+
+    @Then("I will go back to the cart")
+    public void iWillGoBackToTheCart() {
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", cart.getUrl());
+    }
+
+    @When("I click menu button")
+    public void iClickMenuButton() {
+        menu = checkoutPage.openMenu();
+    }
+
+    @Then("I will see the menu opened")
+    public void iWillTheMenuOpened() {
+        Assertions.assertTrue(menu.isOpened());
+    }
+
+    @Given("I finished the first step of the checkout")
+    public void iFinishedTheFirstStepOfTheCheckout() {
+        checkoutPage.sendInfoForCheckout("Amy", "Baker", "EC2Y 5AS");
+    }
+
+    @When("I click finish button")
+    public void iClickFinishButton() {
+        checkoutPage.finishCheckout();
+    }
+
+    @Then("I will the checkout complete page opened")
+    public void iWillTheCheckoutCompletePageOpened() {
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-complete.html", checkoutPage.getUrl());
+    }
+
+    @And("I will see the header {string}")
+    public void iWillSeeTheHeader(String messsage) {
+        Assertions.assertEquals(messsage, checkoutPage.getFinishCheckoutMessage());
+    }
+
+    @Given("I finished checkout")
+    public void iFinishedCheckout() {
+        iFinishedTheFirstStepOfTheCheckout();
+        iClickFinishButton();
+    }
+
+    @When("I press back home button")
+    public void iPressBackHomeButton() {
+        inventoryPage = checkoutPage.pressBackHomeButton();
+    }
+
+    @Then("I will see the Inventory page opened")
+    public void iWillSeeTheInventoryPageOpened() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getUrl());
     }
 }
