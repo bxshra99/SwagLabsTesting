@@ -1,12 +1,13 @@
 
 <!-- PROJECT LOGO -->
+<div id="readme-top"></div>
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/logo.png" alt="Logo" width="250" height="auto">
   </a>
 
-<h3 align="center">SwagLabs Project</h3>
+<h1 align="center">SwagLabs Project</h1>
 
   <p align="center">
      Web testing framework for the Sauce Demo website: Tests created that exercise the website's different functionalities!
