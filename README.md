@@ -35,7 +35,7 @@ Page Objective Models (poms) were created for each of the following pages:
 * Menu
 * Cart
 * CheckoutPage
-Tests were then run for each of these classes to ensure the website was working as expected.
+  <br> Tests were then run for each of these classes to ensure the website was working as expected.
 Cucumber and gherkin were then utilised to run some behavior driven testing.
 
 ## Project objectives
