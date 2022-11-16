@@ -20,8 +20,6 @@ public class LoginPage {
         webDriver.get("https://www.saucedemo.com/");
     }
 
-
-
     public String getUrl() {
         return webDriver.getCurrentUrl();
     }

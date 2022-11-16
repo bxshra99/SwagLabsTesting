@@ -32,8 +32,12 @@ public class CheckoutDefs {
     @Before
     public void setup() {
         webDriver.manage().deleteAllCookies();
+    }
+
+    @Given("I am on the Checkout page logged with {string} and {string}")
+    public void iAmOnTheCheckoutPageLoggedWithAnd(String username, String password) {
         LoginPage loginPage = new LoginPage(webDriver);
-        InventoryPage inventoryPage = loginPage.login("standard_user", "secret_sauce");
+        InventoryPage inventoryPage = loginPage.login(username, password);
         inventoryPage.addOrRemoveSeveralItems(3); // adding 3 items to the cart
         Cart cart = inventoryPage.openCart();
         checkoutPage = cart.goToCheckout();
