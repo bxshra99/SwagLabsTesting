@@ -13,7 +13,7 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/bxshra99/SwagLabsTesting">View Demo</a>
+    <a href="https://github.com/bxshra99/SwagLabsTesting/tree/dev/SwagLabsTesting">View Demo</a>
     
   </p>
 </div>
