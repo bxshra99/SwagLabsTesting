@@ -28,38 +28,39 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+The functionalities of the project were tested to ensure that the website is following the requirements.
+Page Objective Models (poms) were created for each of the following pages:
+* LoginPage
+* InventoryPage
+* Menu
+* Cart
+* CheckoutPage
+Tests were then run for each of these classes to ensure the website was working as expected.
+Cucumber and gherkin were then utilised to run some behavior driven testing.
 
 ## Project objectives
 
 * Setting up collaboratively environment to work together using GitHub.
 * Creating pom’s for different web pages.
 * Defining user stories and acceptance criteria.
-* Create automated web tests using Selenium framework and behaviour driven testing using Cucumber.
+* Create automated web tests using Selenium framework and behaviour driven testing using Cucumber and gherkin.
+* Made a defect report to report each problem that was found.
 
 
-### Technologies used
+### Tools used
 * Intellji
 * Java
 * Selenium
+* Maven
 * Cucumber
 * Gherkin
-
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- CONTRIBUTING -->
-## Pushing to GitHub
-
-
+## Pushing to GitHub repository
 
 1. Create your branch (`git checkout -b branch`)
 2. Make your changes. (using intelliji)
@@ -67,4 +68,11 @@ Here's why:
 3. Commit your Changes (`git commit -m 'Add some branch'`)
 4. Push to the Branch (`git push`)
 5. Open a Pull Request
+
+## Pulling from GitHub repository
+
+1. Locally go on main branch (`git checkout -b dev`)
+2. Pull from remote main branch to local main (`git pull`)
+3. Go back to local branch to continue working (`git checkout -b branch`)
+
 
