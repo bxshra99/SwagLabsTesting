@@ -1,5 +1,6 @@
 package com.sparta.SwagLabsTesting.framework;
 
+import com.sparta.SwagLabsTesting.framework.pom.Cart;
 import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
 import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
 import com.sparta.SwagLabsTesting.framework.pom.Menu;
@@ -15,6 +16,7 @@ public class InventoryTests {
     private InventoryPage inventoryPage;
     private LoginPage loginPage;
     private Menu menu;
+    private Cart cart;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
 
     @BeforeAll
@@ -147,6 +149,7 @@ public class InventoryTests {
         inventoryPage.clickProductSortNameZA();
         Assertions.assertTrue(inventoryPage.productIsSortedZA());
     }
+
 
 //    // testing image link
 //    @Test
