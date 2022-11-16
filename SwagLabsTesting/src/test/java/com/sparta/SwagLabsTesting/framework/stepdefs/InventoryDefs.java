@@ -1,5 +1,5 @@
-
 package com.sparta.SwagLabsTesting.framework.stepdefs;
+
 
 import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
 import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
@@ -22,7 +22,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class MenuNavigationDefs {
+public class InventoryDefs {
 
     private static WebDriver webDriver;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
@@ -30,7 +30,7 @@ public class MenuNavigationDefs {
     private InventoryPage inventoryPage;
     private Menu menu;
 
-    public MenuNavigationDefs(){
+    public InventoryDefs(){
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
@@ -44,59 +44,52 @@ public class MenuNavigationDefs {
         webDriver.get("https://www.saucedemo.com/");
         LoginPage loginPage = new LoginPage(webDriver);
         InventoryPage inventoryPage = loginPage.login("standard_user", "secret_sauce");
-        menu = inventoryPage.openMenu();
+    }
+    @Given("I am on the inventory page")
+    public void iAmOnTheInventoryPage() {
+        inventoryPage = new InventoryPage(webDriver);
     }
 
-    @Given("^that the menu is open$")
-    public void thatTheMenuIsOpen() {
-        menu = new Menu(webDriver);
+    @When("I click on sorting field in upper right corner")
+    public void iClickOnSortingFieldInUpperRightCorner() {
+        inventoryPage.clickProductSortButton();
     }
 
-    @When("^I click on the inventory link$")
-    public void iClickOnTheInventoryLink() {
-        menu.goToInventoryPage();
 
+    @When("I click Add to cart button")
+    public void iClickAddToCartButton() {
+        inventoryPage.clickItemButton(0);
     }
 
-    @Then("^I should be navigated to the inventory page$")
-    public void iShouldBeNavigatedToTheInventoryPage() {
-        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", menu.goToInventoryPage().getUrl());
+    @Then("Product should be added to the cart")
+    public void productShouldBeAddedToTheCart() {
+        Assertions.assertEquals(1, inventoryPage.getCartTotal());
     }
 
-    @When("^I click on the about page link$")
-    public void iClickOnTheAboutPageLink() {
-        menu.goToAboutPage();
+    @When("I have a product added to cart")
+    public void iHaveAProductAddedToCart() {
+        inventoryPage.clickItemButton(0);
     }
 
-    @Then("^I should be navigated to the about page$")
-    public void iShouldBeNavigatedToTheAboutPage() {
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), equalTo("https://saucelabs.com/"));
+    @And("I click Remove button")
+    public void iClickRemoveButton() {
+        inventoryPage.clickItemButton(0);
     }
 
-    @When("^I click on the logout link$")
-    public void iClickOnTheLogoutLink() {
-        menu.goToLogout();
+    @Then("Remove button should change to Add to cart")
+    public void removeButtonShouldChangeToAddToCart() {
+        Assertions.assertTrue(inventoryPage.removeButtonIsPresent(0));
     }
 
-    @Then("^i should be navigated back to the login page$")
-    public void iShouldBeNavigatedBackToTheLoginPage() {
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), equalTo("https://www.saucedemo.com/"));
+    @And("I click one of possible sorting options")
+    public void iClickOneOfPossibleSortingOptions() {
+        inventoryPage.clickProductSortNameAZ();
     }
 
-    @When("^I click on the reset app link$")
-    public void iClickOnTheResetAppLink() {
-        menu.resetPage();
-    }
-
-    @When("^i click on the close menu button$")
-    public void iClickOnTheCloseMenuButton() {
-        menu.close();
-    }
-
-    @Then("^the menu will be hidden from the webpage$")
-    public void theMenuWillBeHiddenFromTheWebpage() {
-        Assertions.assertEquals("true", webDriver.findElement(By.className("bm-menu-wrap")).getAttribute("aria-hidden"));
-    }
+//    @Then("Products on page should be sorted by name[A-Z]")
+//    public void productsOnPageShouldBeSortedByNameAZ() {
+//        Assertions.assertTrue(inventoryPage.productIsSortedAZ());
+//    }
 
     @AfterAll
     public static void tearDown(){
@@ -106,4 +99,5 @@ public class MenuNavigationDefs {
             webDriver.close();
             webDriver.quit();}
     }
+
 }
