@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1015.0" y="128.0">com.sparta.SwagLabsTesting.framework.pom.CheckoutPage</node>
+    <node x="213.0" y="216.0">com.sparta.SwagLabsTesting.framework.pom.Menu</node>
+    <node x="484.0" y="271.0">com.sparta.SwagLabsTesting.framework.pom.LoginPage</node>
+    <node x="-71.0" y="-15.0">com.sparta.SwagLabsTesting.framework.pom.InventoryPage</node>
+    <node x="748.0" y="194.0">com.sparta.SwagLabsTesting.framework.pom.Cart</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="0.7149425287356321" showDependencies="false" x="634.0" y="420.0000000000001" />
+  <SelectedNodes>
+    <node>com.sparta.SwagLabsTesting.framework.pom.Menu</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
