@@ -79,7 +79,7 @@ public class MenuTests {
     @DisplayName("Test Close Menu button")
     public void TestCloseMenu() {
         menu.close();
-        Assertions.assertEquals("true", webDriver.findElement(By.className("bm-menu-wrap")).getAttribute("aria-hidden"));
+        Assertions.assertFalse(menu.isOpened());
     }
 
     @AfterAll

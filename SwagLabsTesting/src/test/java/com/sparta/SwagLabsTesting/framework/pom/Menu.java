@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class Menu {
 
@@ -18,6 +19,8 @@ public class Menu {
     private final By aboutLink = new By.ById("about_sidebar_link");
     private final By logoutLink = new By.ById("logout_sidebar_link");
     private final By resetLink = new By.ById("reset_sidebar_link");
+
+    private By menuContainer = new By.ByClassName("bm-menu-wrap");
 
     public Menu(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -49,6 +52,11 @@ public class Menu {
         waitUntilElementClickable(resetLink);
         webDriver.findElement(resetLink).click();
         return new InventoryPage(webDriver);
+    }
+
+    public boolean isOpened() {
+        String hidden = webDriver.findElement(menuContainer).getAttribute("aria-hidden");
+        return Objects.equals(hidden, "false");
     }
 
     public void close(){

@@ -21,10 +21,10 @@ public class CartTest {
 
     @BeforeAll
     public static void setupAll() {
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setLogLevel(ChromeDriverLogLevel.SEVERE);
-        chromeOptions.addArguments("headless");
+//        chromeOptions.addArguments("headless");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
@@ -39,10 +39,24 @@ public class CartTest {
     }
 
     @Test
-    @DisplayName("checkout returns correct url")
+    @DisplayName("Cart page returns correct url")
     public void checkoutUrlTest() {
         Assertions.assertEquals("https://www.saucedemo.com/cart.html", cart.getUrl());
     }
+
+//    @Test
+//    @DisplayName("Continue shopping button opens the Inventory page")
+//    public void testContinueShopping() {
+//        inventoryPage = cart.continueShopping();
+//        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getUrl());
+//    }
+//
+//    @Test
+//    @DisplayName("User can delete one item from the cart")
+//    public void testRemoveOneItem() {
+//        cart.clickRemoveButton(0);
+//        Assertions.assertEquals(2, cart.getNumberOfItems());
+//    }
 
     @AfterEach
     public void removeItems() {
