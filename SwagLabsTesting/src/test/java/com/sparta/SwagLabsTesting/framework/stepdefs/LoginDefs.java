@@ -1,5 +1,6 @@
 package com.sparta.SwagLabsTesting.framework.stepdefs;
 
+import com.sparta.SwagLabsTesting.framework.pom.InventoryPage;
 import com.sparta.SwagLabsTesting.framework.pom.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
@@ -20,6 +21,7 @@ public class LoginDefs {
     private static WebDriver webDriver;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
     private LoginPage loginPage;
+    private InventoryPage inventoryPage;
 
     public LoginDefs() {
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
@@ -55,7 +57,7 @@ public class LoginDefs {
 
     @And("I click the login button")
     public void iClickTheLoginButton() {
-        loginPage.clickLogin();
+        inventoryPage = loginPage.clickLogin();
     //    throw new PendingException();
     }
 
@@ -63,6 +65,11 @@ public class LoginDefs {
     public void iWillSeeTheMessage(String message) {
         Assertions.assertTrue(loginPage.hasMessage(message));
    //     throw new PendingException();
+    }
+
+    @Then("I will be navigated to the inventory page")
+    public void iWillBeNavigatedToTheInventoryPage() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getUrl());
     }
 
     @After
