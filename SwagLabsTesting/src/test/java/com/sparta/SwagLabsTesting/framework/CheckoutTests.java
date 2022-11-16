@@ -32,11 +32,11 @@ public class CheckoutTests {
         InventoryPage inventoryPage = loginPage.login("standard_user", "secret_sauce");
         inventoryPage.addOrRemoveSeveralItems(3); // adding 3 items to the cart
         Cart cart = inventoryPage.openCart();
-        checkoutPage = cart.checkoutButton();
+        checkoutPage = cart.goToCheckout();
     }
 
     @Test
-    @DisplayName("Test checkout works once all info is correct")
+    @DisplayName("Test checkout works when user fills all 3 fields")
     public void testCorrectCheckout() {
         checkoutPage.sendInfoForCheckout("Amy", "Baker", "EC2Y 5AS");
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", checkoutPage.getUrl());
@@ -66,8 +66,8 @@ public class CheckoutTests {
     @Test
     @DisplayName("Test cancel button from first step of checkout")
     public void testCancelButtonFromFirstStepOfCheckout() {
-        InventoryPage inventoryPage = checkoutPage.cancelCheckout();
-        Assertions.assertEquals("https://www.saucedemo.com/cart.html", inventoryPage.getUrl());
+        Cart cart = checkoutPage.cancelCheckout();
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", cart.getUrl());
     }
 
     @AfterAll

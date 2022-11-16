@@ -14,6 +14,7 @@ public class CheckoutPage {
     private final By finishCheckoutButton = new By.ById("finish");
     private final By backHomeButton = new By.ById("back-to-products");
     private final By errorBox = new By.ByCssSelector(".error-message-container");
+    private final By finishCheckoutHeader = new By.ByClassName("complete-header");
 
     public CheckoutPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -51,9 +52,9 @@ public class CheckoutPage {
         continueCheckout();
     }
 
-    public InventoryPage cancelCheckout() {
+    public Cart cancelCheckout() {
         webDriver.findElement(cancelButton).click();
-        return new InventoryPage(webDriver);
+        return new Cart(webDriver);
     }
 
     public void finishCheckout() {
@@ -62,6 +63,10 @@ public class CheckoutPage {
 
     public String getErrorMessage() {
         return webDriver.findElement(errorBox).getText();
+    }
+
+    public String getFinishCheckoutMessage() {
+        return webDriver.findElement(finishCheckoutHeader).getText();
     }
 
     public InventoryPage pressBackHomeButton() {
