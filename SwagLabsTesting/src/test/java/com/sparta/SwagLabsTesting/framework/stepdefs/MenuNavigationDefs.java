@@ -26,6 +26,8 @@ public class MenuNavigationDefs {
 
     private static WebDriver webDriver;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
+    private LoginPage loginPage;
+    private InventoryPage inventoryPage;
 
     private Menu menu;
 
