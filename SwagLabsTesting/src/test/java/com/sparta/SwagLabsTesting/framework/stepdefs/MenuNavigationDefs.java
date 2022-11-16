@@ -27,10 +27,7 @@ public class MenuNavigationDefs {
     private static WebDriver webDriver;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
 
-    private LoginPage loginPage;
-    private InventoryPage inventoryPage;
     private Menu menu;
-
 
     public MenuNavigationDefs(){
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
@@ -43,22 +40,18 @@ public class MenuNavigationDefs {
     @Before
     public void setup() {
         webDriver.manage().deleteAllCookies();
-        webDriver.get("https://www.saucedemo.com/");
-        LoginPage loginPage = new LoginPage(webDriver);
-        InventoryPage inventoryPage = loginPage.login("standard_user", "secret_sauce");
-        menu = inventoryPage.openMenu();
     }
 
-
-    @Given("^that the menu is open$")
-    public void thatTheMenuIsOpen() {
-        menu = new Menu(webDriver);
+    @Given("I opened the menu logged in with {string} and {string}")
+    public void iOpenedTheMenuLoggedInWithAnd(String username, String password) {
+        LoginPage loginPage = new LoginPage(webDriver);
+        InventoryPage inventoryPage = loginPage.login(username, password);
+        menu = inventoryPage.openMenu();
     }
 
     @When("^I click on the inventory link$")
     public void iClickOnTheInventoryLink() {
         menu.goToInventoryPage();
-
     }
 
     @Then("^I should be navigated to the inventory page$")
@@ -103,9 +96,7 @@ public class MenuNavigationDefs {
 
     @AfterAll
     public static void tearDown(){
-
         if (webDriver!=null){
-
             webDriver.close();
             webDriver.quit();}
     }
