@@ -17,7 +17,6 @@ import org.openqa.selenium.chrome.ChromeDriverLogLevel;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LoginDefs {
-
     private static WebDriver webDriver;
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver.exe";
     private LoginPage loginPage;
@@ -73,5 +72,4 @@ public class LoginDefs {
             webDriver.quit();
         }
     }
-
 }
