@@ -38,3 +38,28 @@ Feature: As a user on the Swag Labs Page, I want to be able to login
       | alena    | cucumber |
       | rumana   | miah     |
       | A        |S         |
+
+  Scenario: Valid login
+    Given I am on the login page
+    When I input the correct login information and press login
+    Then I am taken to the inventory page
+
+  Scenario: Wrong username, correct password
+    Given I am on the login page
+    When I input the wrong username and the right password, and press login
+    Then I see a message telling me that my details do not match any username or password in the service.
+
+  Scenario: Correct username, wrong password
+    Given I am on the login page
+    When I input the correct username and wrong password, and press login
+    Then I see a message telling me that my details do not match any username or password in the service.
+
+  Scenario: Username but no password
+    Given I am on the login page
+    When I input a username but no password and press login
+    Then I see a message that tells me a password is required.
+
+  Scenario: Password but no username
+    Given I am on the login page
+    When I input a password but no username and press login
+    Then I see a message that tells me a username is required.
