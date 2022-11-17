@@ -45,6 +45,9 @@ Cucumber and gherkin were then utilised to run some behavior driven testing.
 * Create automated web tests using Selenium framework and behaviour driven testing using Cucumber and gherkin.
 * Made a defect report to report each problem that was found.
 
+### Class Diagram
+<img src="images/class-diagram.png" alt="Class Diagram">
+
 
 ### Tools used
 * Java
